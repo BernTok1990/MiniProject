@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <meta charset="ISO-8859-1" />
+    <title>Employee Management System</title>
+
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
+    />
+  </head>
+  <body>
+    <div class="container">
+      <h1>Employee Management System</h1>
+      <hr />
+      <h2>Employee details</h2>
+      <div th:object="${employee}">
+        <!-- Add hidden form field to handle update -->
+        <input type="hidden" th:field="*{id}" />
+        <span style="display: flex; flex-direction: row">
+          <p class="mb-2 col-2">First Name:</p>
+          <p th:text="*{firstName}" class="form-control mb-4 col-4"></p>
+        </span>
+		<span style="display: flex; flex-direction: row">
+			<p class="mb-2 col-2">Last Name:</p>
+			<p th:text="*{lastName}" class="form-control mb-4 col-4"></p>
+		  </span>
+		  <span style="display: flex; flex-direction: row">
+			<p class="mb-2 col-2">Email:</p>
+			<p th:text="*{email}" class="form-control mb-4 col-4"></p>
+		  </span>
+		  <span style="display: flex; flex-direction: row">
+			<p class="mb-2 col-2">Age:</p>
+			<p th:text="*{age}" class="form-control mb-4 col-4"></p>
+		  </span>
+		  <span style="display: flex; flex-direction: row">
+			<p class="mb-2 col-2">Address:</p>
+			<p th:text="*{address}" class="form-control mb-4 col-4"></p>
+		  </span>
+		  <span style="display: flex; flex-direction: row">
+			<p class="mb-2 col-2">Phone:</p>
+			<p th:text="*{phone}" class="form-control mb-4 col-4"></p>
+		  </span>
+		  <span style="display: flex; flex-direction: row">
+			<p class="mb-2 col-2">Created At:</p>
+			<p th:text="*{createdat}" class="form-control mb-4 col-4"></p>
+		  </span>
+<!-- 
+        <p th:text="*{lastName}" class="form-control mb-4 col-4"></p>
+
+        <p th:text="*{email}" class="form-control mb-4 col-4"></p>
+        <p th:text="*{age}" class="form-control mb-4 col-4"></p>
+
+        <p th:text="*{address}" class="form-control mb-4 col-4"></p>
+
+        <p th:text="*{phone}" class="form-control mb-4 col-4"></p>
+
+        <p th:text="*{createdat}" class="form-control mb-4 col-4"></p> -->
+      </div>
+      <hr />
+
+      <a th:href="@{/}"> Back to Employee List</a>
+    </div>
+  </body>
+</html>

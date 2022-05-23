@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee Management System</title>
+
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+crossorigin="anonymous" />
+</head>
+<body>
+    <div class="container-fluid text-center" style="margin-top: 100px;">
+        <form th:action="@{/register}" method="post" style="max-width: 350px; margin: 0 auto;" th:object="${user}" onsubmit="return matchPassword()">
+        
+            <div class="border border-secondary p-3 rounded">
+                <p>Register</p>
+                <p>
+                    <input type="text" name="username" class="form-control" placeholder="Username" required autofocus th:field="*{username}"/>
+                </p>
+                <p>
+                    <input type="email" name="email" class="form-control" placeholder="Email" required th:field="*{email}"/>
+                </p>
+                <p>
+                    <input id="pswd1" type="password" name="password" class="form-control" placeholder="Password" required th:field="*{password}"/>
+                </p>
+                <p>
+                    <input id="pswd2" type="password" name="confirm password" class="form-control" placeholder="Confirm Password" required  />
+                </p>
+                <p>
+                    <input type="submit" value="Register" class="btn btn-primary" />
+                </p>
+                <p>Already have an account? <a th:href = "@{/login}"> Log In </a></p>
+            </div>
+            <script language='javascript' type='text/javascript'>
+                function matchPassword() {  
+                  var pw1 = document.getElementById("pswd1").value;  
+                  var pw2 = document.getElementById("pswd2").value;  
+                  if(pw1 === pw2)  
+                  {
+                      
+                  return true
+                  }else
+                  {
+                    alert("Passwords did not match");  
+                    return false
+                  }
+                }  
+                </script>  
+        </form>      
+    </div>
+</html>

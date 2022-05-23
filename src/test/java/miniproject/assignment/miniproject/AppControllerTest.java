@@ -12,6 +12,8 @@ import java.util.Optional;
 
 import javax.security.auth.Subject;
 
+import com.amazonaws.Request;
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -141,30 +143,33 @@ public class AppControllerTest {
             }
     }
 
-    // @Test
-    // public void createUserShouldNotWork(){
+    @Test
+    public void failLogin(){
+        RequestBuilder req = MockMvcRequestBuilders.post("/login")
+            .accept(MediaType.TEXT_HTML_VALUE)
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+            .param("username", "test1")
+            .param("email", "test@gmail.com")
+            .param("password", "test1");
 
-    //     MultiValueMap<String, String> form = new LinkedMultiValueMap<>();
-    //     form.add("username", "tom");
-    //     form.add("password", "abc");
-    //     form.add("email", "tom@gmail.com");
+        MvcResult result = null;
+        try{
+            result = mvc.perform(req).andReturn();
+        } catch (Exception ex){
+            fail("cannot perform mvc invocation", ex);
+            return;
+        }
 
-    //     RequestBuilder req = MockMvcRequestBuilders.post("/register")
-    //         .params(form)
-    //         .contentType(MediaType.APPLICATION_FORM_URLENCODED);
+        MockHttpServletResponse resp = result.getResponse();
+        try{
+            String payload = resp.getContentAsString();
+            assertNotNull(payload);
+        }   catch (Exception ex) {
+            fail("cannot retrieve", ex);
+            return;
+        }
 
-    //     MvcResult result = null;
-
-    //     try{
-    //         result = mvc.perform(req).andReturn();
-    //     } catch (Exception e){
-    //         fail("cannot perform", e);
-    //         return;
-    //     }
-
-    //     MockHttpServletResponse resp = result.getResponse();
-    //     assertEquals(400, resp.getStatus());
-    // }
+    }
 
 
     

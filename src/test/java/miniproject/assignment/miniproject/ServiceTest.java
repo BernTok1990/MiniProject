@@ -1,6 +1,7 @@
 package miniproject.assignment.miniproject;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.fail;
 
 import org.junit.Test;
@@ -11,6 +12,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.mock.web.MockHttpServletResponse;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 import org.springframework.test.web.servlet.RequestBuilder;
@@ -96,5 +98,44 @@ public class ServiceTest {
             fail("cannot retrieve response", ex);
             return;
         }
+    }
+
+    @Test
+    public void deleteEmployeeTest(){
+        Employee employee = testEmployee();
+        empImp.saveEmployee(employee);
+
+        MockHttpSession session = new MockHttpSession();
+        session.setAttribute("employee", employee);
+
+        RequestBuilder req = MockMvcRequestBuilders.post("//deleteEmployee/{id}")
+            .accept(MediaType.TEXT_HTML_VALUE)
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+            .param("firstname", "abc")
+            .param("lastName", "zxc")
+            .param("email", "test@gmail.com")
+            .param("age", "30")
+            .param("address", "singapore")
+            .param("phone", "123456")
+            .session(session);
+
+        MvcResult result = null; 
+        try{
+            result = mvc.perform(req).andReturn();
+        } catch(Exception ex){
+            fail("cannot perfom mvc invocation", ex);
+            return;
+        }
+
+        MockHttpServletResponse resp = result.getResponse();
+        try{
+            Integer statusCode = resp.getStatus();
+            assertEquals(200, statusCode);
+        } catch (Exception ex){
+            fail("cannot retrieve response", ex);
+            return;
+        }
+        
+        empSvc.deleteEmployeeById(testEmployee());
     }
 }

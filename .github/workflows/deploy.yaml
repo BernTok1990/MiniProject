@@ -1,18 +1,18 @@
 name: Deploy
-
-on:
-  push:
-    branches:
-      - main1
-
+on: 
+  release:
+    types: [published]
 jobs:
-  build:
+  deploy_to_heroku:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: akhileshns/heroku-deploy@v3.12.12 
-        with:
-          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
-          heroku_app_name: "miniprojectb" 
-          heroku_email: "tokbernard@gmail.com"
+    - name: Checkout src 
+      uses: actions/checkout@v2
+    - name: Deploy
+      uses: akhileshns/heroku-deploy@v3.12.12 
+      with:
+        heroku_api_key: ${{ secrets.heroku_api_key }}
+        heroku_app_name: miniprojectb
+        heroku_email: tokbernard@gmail.com
+        branch: ${{ github.ref_name }}
         

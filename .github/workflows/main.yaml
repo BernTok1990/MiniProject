@@ -1,9 +1,9 @@
 name: Compile and Test
 on: [ "push" ]
-env:
-  EDAMAM_API_KEY: ${{ secrets.edamam_api_key }}
-  EDAMAM_API_ID: ${{ secrets.edamam_api_id }}
-  SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+# env:
+#   EDAMAM_API_KEY: ${{ secrets.edamam_api_key }}
+#   EDAMAM_API_ID: ${{ secrets.edamam_api_id }}
+#   SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
 jobs:
   step1:
     runs-on: ubuntu-latest

@@ -141,6 +141,14 @@ public class AppControllerTest {
                 fail("cannot perform", ex);
                 return;
             }
+
+            MockHttpServletResponse resp = result.getResponse();
+            try{
+                assertEquals(403, resp.getStatus());
+            } catch (Exception ex){
+                fail("cannot retrieve", ex);
+                return;
+            }
     }
 
     @Test
@@ -156,7 +164,7 @@ public class AppControllerTest {
         try{
             result = mvc.perform(req).andReturn();
         } catch (Exception ex){
-            fail("cannot perform mvc invocation", ex);
+            fail("cannot perform mvc invocation for unsuccessful login", ex);
             return;
         }
 
@@ -186,6 +194,15 @@ public class AppControllerTest {
             result = mvc.perform(req).andReturn();
         } catch (Exception ex){
             fail("cannot perform mvc for unsuccessful login", ex);
+            return;
+        }
+
+        MockHttpServletResponse resp = result.getResponse();
+        try {
+            Integer statusCode = resp.getStatus();
+            assertEquals(403,statusCode);
+        } catch (Exception ex) {
+            fail("cannot retrieve response for unsuccessful login", ex);
             return;
         }
 

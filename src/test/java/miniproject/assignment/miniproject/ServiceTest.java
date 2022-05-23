@@ -88,13 +88,13 @@ public class ServiceTest {
             return;
         }
 
-        // MockHttpServletResponse resp = result.getResponse();
-        // try{
-        //     Integer statusCode = resp.getStatus();
-        //     assertEquals(200, statusCode);
-        // } catch (Exception ex){
-        //     fail("cannot retrieve response", ex);
-        //     return;
-        // }
+        MockHttpServletResponse resp = result.getResponse();
+        try{
+            Integer statusCode = resp.getStatus();
+            assertEquals(200, statusCode);
+        } catch (Exception ex){
+            fail("cannot retrieve response", ex);
+            return;
+        }
     }
 }

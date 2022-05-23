@@ -171,6 +171,26 @@ public class AppControllerTest {
 
     }
 
+    @Test
+    public void loginFail() throws Exception{
+        MockHttpSession session = new MockHttpSession();
+        RequestBuilder req = MockMvcRequestBuilders.post("/login")
+            .accept(MediaType.TEXT_HTML_VALUE)
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+            .param("username", "User")
+            .param("password", "user")
+            .session(session);
+
+        MvcResult result = null;
+        try{
+            result = mvc.perform(req).andReturn();
+        } catch (Exception ex){
+            fail("cannot perform mvc for unsuccessful login", ex);
+            return;
+        }
+
+    }
+
 
     
 }

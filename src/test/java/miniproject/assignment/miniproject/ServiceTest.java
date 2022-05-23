@@ -1,12 +1,20 @@
 package miniproject.assignment.miniproject;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.fail;
+
 import org.junit.Test;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.http.MediaType;
+import org.springframework.mock.web.MockHttpServletResponse;
 import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.MvcResult;
+import org.springframework.test.web.servlet.RequestBuilder;
+import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 
 import miniproject.assignment.miniproject.Model.Employee;
 import miniproject.assignment.miniproject.Repository.EmployeeRepository;
@@ -54,9 +62,39 @@ public class ServiceTest {
             e.printStackTrace();
         }
     }
-    
+
     @AfterEach
     public void deleteTestEmployee(){
         empSvc.deleteEmployeeById(testEmployee());
+    }
+
+    @Test
+    public void createEmployeePass(){
+        RequestBuilder req = MockMvcRequestBuilders.post("/saveEmployee")
+            .accept(MediaType.TEXT_MARKDOWN_VALUE)
+            .contentType(MediaType.APPLICATION_FORM_URLENCODED)
+            .param("firstName", "test")
+            .param("lastName", "test1")
+            .param("email", "test@gmail.com")
+            .param("age", "21")
+            .param("address", "test")
+            .param("phone", "1234567");
+
+        MvcResult result = null;
+        try{
+            result = mvc.perform(req).andReturn();
+        } catch (Exception ex){
+            fail("cannot perform", ex);
+            return;
+        }
+
+        // MockHttpServletResponse resp = result.getResponse();
+        // try{
+        //     Integer statusCode = resp.getStatus();
+        //     assertEquals(200, statusCode);
+        // } catch (Exception ex){
+        //     fail("cannot retrieve response", ex);
+        //     return;
+        // }
     }
 }

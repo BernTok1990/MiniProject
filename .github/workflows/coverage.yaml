@@ -33,6 +33,8 @@ jobs:
         badges-directory: badges
         generate-branches-badge: true
         generate-summary: true
+        source: target/site/jacoco
+        out_dir: coverage/${{ github.event.repository.name }}/report
 
     - name: Log coverage percentages to workflow output
       run: |
@@ -44,7 +46,7 @@ jobs:
         name: jacoco-report
         path: target/site/jacoco/
 
-# name: build (PR version)
+# name: Coverage
 
 # on:
 #   push:

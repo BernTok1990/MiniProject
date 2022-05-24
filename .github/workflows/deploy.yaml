@@ -3,10 +3,15 @@ name: Deploy to heroku
 #   release:
 #     types: [published]
 
-on:
+# on:
+#   push:
+#     branches:
+#       - main1
+
+on: 
   push:
-    branches:
-      - main1
+    tags:
+    - 'v*'
 
 jobs:
   deploy_to_heroku:

@@ -1,9 +1,6 @@
-name: Compile and Test
+name: Compile, Test and Deploy
 on: [ "push" ]
-# env:
-#   EDAMAM_API_KEY: ${{ secrets.edamam_api_key }}
-#   EDAMAM_API_ID: ${{ secrets.edamam_api_id }}
-#   SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+
 jobs:
   step1:
     runs-on: ubuntu-latest
@@ -23,6 +20,10 @@ jobs:
       run: mvn clean verify
     - name: Generate coverage badge
       uses: cicirello/jacoco-badge-generator@v2
+      with:
+          generate-coverage-badge: true
+          source: target/site/jacoco
+          out_dir: coverage/${{ github.event.repository.name }}/report
     # - name: Upload coverage badge to DigitalOcean spaces
     #   uses: BetaHuhn/do-spaces-action@v2
     #   with:

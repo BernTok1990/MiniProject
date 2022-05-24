@@ -49,9 +49,9 @@ name: build (PR version)
 
 on:
   push:
-    branches: [ main ]
+    branches: [ main1 ]
   pull_request:
-    branches: [ main ]
+    branches: [ main1 ]
   workflow_dispatch:
 
 jobs:

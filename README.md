@@ -2,5 +2,5 @@
 
 [![Compile, Test and Deploy](https://github.com/BernTok1990/MiniProject/actions/workflows/main.yaml/badge.svg?branch=main1)](https://github.com/BernTok1990/MiniProject/actions/workflows/main.yaml)
 
-[![Coverage](https://github.com/BernTok1990/MiniProject/actions/workflows/coverage.yaml/badges.svg)](https://github.com/BernTok1990/MiniProject/actions/workflows/coverage.yaml)
+[![Coverage](https://github.com/BernTok1990/MiniProject/actions/workflows/coverage.yaml/badge.svg?branch=main1)](https://github.com/BernTok1990/MiniProject/actions/workflows/coverage.yaml)
 

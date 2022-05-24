@@ -24,9 +24,10 @@ jobs:
     - name: Generate coverage badge
       uses: cicirello/jacoco-badge-generator@v2
       with:
-          generate-branches-badge: true
+          # generate-branches-badge: true
           generate-coverage-badge: true
-          jacoco-csv-file: target/site/jacoco/jacoco.csv
+          source: target/site/jacoco/jacoco.csv
+          out_dir: coverage/${{ github.event.repository.name }}/report
     # - name: Upload coverage badge to DigitalOcean spaces
     #   uses: BetaHuhn/do-spaces-action@v2
     #   with:

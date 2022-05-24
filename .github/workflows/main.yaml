@@ -1,9 +1,6 @@
 name: Compile and Test
 on: [ "push" ]
-# env:
-#   EDAMAM_API_KEY: ${{ secrets.edamam_api_key }}
-#   EDAMAM_API_ID: ${{ secrets.edamam_api_id }}
-#   SPRING_DATASOURCE_PASSWORD: ${{ secrets.SPRING_DATASOURCE_PASSWORD }}
+
 jobs:
   step1:
     runs-on: ubuntu-latest
@@ -24,7 +21,6 @@ jobs:
     - name: Generate coverage badge
       uses: cicirello/jacoco-badge-generator@v2
       with:
-          # generate-branches-badge: true
           generate-coverage-badge: true
           source: target/site/jacoco
           out_dir: coverage/${{ github.event.repository.name }}/report

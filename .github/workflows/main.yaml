@@ -26,7 +26,7 @@ jobs:
       with:
           # generate-branches-badge: true
           generate-coverage-badge: true
-          source: target/site/jacoco/jacoco.csv
+          source: target/site/jacoco
           out_dir: coverage/${{ github.event.repository.name }}/report
     # - name: Upload coverage badge to DigitalOcean spaces
     #   uses: BetaHuhn/do-spaces-action@v2
